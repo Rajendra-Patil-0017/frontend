@@ -1,0 +1,393 @@
+/* Modern Navbar Component */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+
+    /* 🌈 Colorful Gradient Background */
+    background: linear-gradient(
+        -45deg,
+        rgba(255, 107, 107, 0.9),
+        rgba(255, 165, 0, 0.9),
+        rgba(50, 205, 50, 0.9),
+        rgba(70, 130, 180, 0.9)
+    );
+    background-size: 300% 300%;
+    animation: gradientShift 12s ease infinite;
+
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid var(--border-color, rgba(229, 231, 235, 0.5));
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky, 1020);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-wrap: nowrap;
+    min-height: 4rem;
+    transform: translateY(0);
+    overflow: hidden;
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(255, 20, 147, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(0, 191, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
+    background-size: 150% 150%;
+    animation: floatingOrbs 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Scroll-based background change */
+.navbar.scrolled {
+    background: linear-gradient(
+        -45deg,
+        rgba(255, 107, 107, 1),
+        rgba(255, 165, 0, 1),
+        rgba(50, 205, 50, 1),
+        rgba(70, 130, 180, 1)
+    );
+    background-size: 300% 300%;
+    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+body.dark-mode .navbar.scrolled {
+    background: linear-gradient(
+        -45deg,
+        rgba(17, 24, 39, 0.95),
+        rgba(55, 65, 81, 0.95),
+        rgba(31, 41, 55, 0.95),
+        rgba(75, 85, 99, 0.95)
+    );
+}
+
+/* Enhanced Dark Mode Support */
+body.dark-mode .navbar {
+    background: linear-gradient(
+        -45deg,
+        rgba(17, 24, 39, 0.95),
+        rgba(31, 41, 55, 0.95),
+        rgba(55, 65, 81, 0.95),
+        rgba(75, 85, 99, 0.95)
+    );
+    border-bottom-color: rgba(55, 65, 81, 0.5);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .nav-logo p {
+    color: var(--dark-text-primary, #f9fafb);
+}
+
+body.dark-mode .nav-menu a {
+    color: var(--dark-text-secondary, #e5e7eb);
+}
+
+body.dark-mode .nav-menu li:hover a,
+body.dark-mode .nav-menu li.active a {
+    color: var(--accent, #f59e0b);
+}
+
+body.dark-mode .nav-menu li::after {
+    background: var(--accent, #f59e0b);
+}
+
+body.dark-mode .nav-login-cart button {
+    background: var(--dark-bg-secondary, #1f2937);
+    color: var(--dark-text-secondary, #e5e7eb);
+    border-color: var(--dark-border, #374151);
+}
+
+body.dark-mode .nav-login-cart button:hover {
+    background: var(--accent, #f59e0b);
+    color: white;
+    border-color: var(--accent, #f59e0b);
+}
+
+/* Logo */
+.nav-logo {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.nav-logo img {
+    width: 76.5px;  
+    height: auto; 
+    transition: transform 0.3s ease;
+}
+
+.nav-logo img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5));
+}
+
+.nav-logo p {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    transition: color 0.3s ease;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-logo:hover p {
+    background: linear-gradient(45deg, #ff6b6b, #ffa500, #ffff00, #32cd32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbow 2s infinite;
+}
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    25% { filter: hue-rotate(90deg); }
+    50% { filter: hue-rotate(180deg); }
+    75% { filter: hue-rotate(270deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Floating animations */
+@keyframes floatingOrbs {
+    0% { background-position: 30% 40%, 70% 60%, 50% 20%; opacity: 0.3; }
+    33% { background-position: 70% 80%, 20% 30%, 80% 70%; opacity: 0.6; }
+    66% { background-position: 40% 20%, 80% 90%, 10% 50%; opacity: 0.4; }
+    100% { background-position: 30% 40%, 70% 60%, 50% 20%; opacity: 0.3; }
+}
+
+@keyframes shimmer {
+    0% { left: -100%; opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { left: 100%; opacity: 0; }
+}
+
+/* Menu styles */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    min-width: 0;
+}
+
+.nav-menu li {
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.nav-menu li:nth-child(1) { animation-delay: 0.1s; }
+.nav-menu li:nth-child(2) { animation-delay: 0.2s; }
+.nav-menu li:nth-child(3) { animation-delay: 0.3s; }
+.nav-menu li:nth-child(4) { animation-delay: 0.4s; }
+.nav-menu li:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: #ff6b6b;
+    text-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+}
+
+.nav-menu li::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b6b, #ffa500, #ffff00);
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+}
+
+.nav-menu li:hover::after,
+.nav-menu li.active::after {
+    width: 80%;
+}
+
+/* Login & Cart */
+.nav-login-cart {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.nav-login-cart button {
+    padding: 8px 24px;
+    height: 38px;
+    outline: none;
+    border: 1px solid #7a7a7a;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1;
+    min-width: 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.nav-login-cart button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+}
+
+.nav-login-cart button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.nav-login-cart button:hover {
+    background: linear-gradient(135deg, #FF4141 0%, #ff6b6b 50%, #ff8c42 100%);
+    color: #fff;
+    border-color: #FF4141;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(255, 65, 65, 0.3);
+}
+
+.nav-login-cart button:hover::before {
+    left: 100%;
+}
+
+.nav-login-cart button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 8px rgba(255, 65, 65, 0.2);
+    transition-duration: 0.1s;
+}
+
+.nav-login-cart button:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+.nav-login-cart button:focus {
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(255, 65, 65, 0.3);
+}
+
+.nav-cart-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-cart-wrapper img {
+    width: 26px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    filter: grayscale(20%);
+}
+
+.nav-cart-wrapper:hover img {
+    transform: scale(1.1);
+    filter: none drop-shadow(0 0 8px rgba(255, 107, 107, 0.6));
+}
+
+.nav-cart-count {
+    position: absolute;
+    top: -6px; right: -10px;
+    width: 20px; height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 12px;
+    background: linear-gradient(135deg, #ff6b6b, #ffa500);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+    animation: pop 0.3s cubic-bezier(0.68,-0.55,0.265,1.55);
+    z-index: 1;
+    border: 2px solid white;
+}
+
+@keyframes pop {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .navbar { padding: 0.75rem 1rem; }
+    .nav-menu { gap: 16px; }
+    .nav-logo p { font-size: 24px; }
+}
+
+@media (max-width: 768px) {
+    .navbar { flex-wrap: wrap; }
+    .nav-menu { display: none; flex-direction: column; width: 100%; }
+    .nav-menu.open { display: flex; }
+    .nav-menu-toggle { display: flex; }
+}
+
+@media (max-width: 480px) {
+    .navbar { padding: 0.5rem; }
+    .nav-menu { font-size: 14px; gap: 8px; }
+    .nav-login-cart { gap: 8px; }
+}

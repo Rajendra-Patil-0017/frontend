@@ -1,0 +1,624 @@
+/* Modern Login/Signup Page */
+.loginsigup {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg,
+        rgba(252, 227, 254, 0.95) 0%,
+        rgba(225, 255, 234, 0.9) 50%,
+        rgba(255, 255, 255, 0.95) 100%);
+    backdrop-filter: blur(1px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-xl, 2rem) var(--space-md, 1rem);
+    position: relative;
+    overflow: hidden;
+}
+
+.loginsigup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Enhanced Dark Mode */
+body.dark-mode .loginsigup {
+    background: linear-gradient(135deg,
+        rgba(17, 24, 39, 0.95) 0%,
+        rgba(31, 41, 55, 0.9) 50%,
+        rgba(17, 24, 39, 0.95) 100%);
+}
+
+body.dark-mode .loginsigup::before {
+    background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.15) 0%, transparent 50%);
+}
+
+/* Main Container */
+.loginsignup-container {
+    width: 100%;
+    max-width: 420px;
+    min-height: 520px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: auto;
+    padding: var(--space-2xl, 3rem) var(--space-xl, 2rem);
+    border-radius: var(--radius-2xl, 1rem);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: slideInUp 0.6s ease-out;
+}
+
+.loginsignup-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+        var(--primary, #3b82f6),
+        var(--secondary, #10b981),
+        var(--accent, #f59e0b));
+    z-index: 1;
+}
+
+/* Enhanced Dark Mode for Container */
+body.dark-mode .loginsignup-container {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: rgba(75, 85, 99, 0.3);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* Typography */
+.loginsignup-container h1 {
+    margin: var(--space-md, 1rem) 0 var(--space-xl, 2rem) 0;
+    font-size: clamp(1.75rem, 4vw, 2rem);
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    background: linear-gradient(135deg,
+        var(--text-primary, #111827),
+        var(--primary, #3b82f6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 2;
+}
+
+body.dark-mode .loginsignup-container h1 {
+    background: linear-gradient(135deg,
+        var(--dark-text-primary, #f9fafb),
+        var(--accent, #f59e0b));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Form Fields */
+.loginsingup-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg, 1.5rem);
+    margin-top: var(--space-xl, 2rem);
+    position: relative;
+    z-index: 2;
+}
+
+.loginsingup-fields input {
+    height: 56px;
+    width: 100%;
+    padding: 0 var(--space-lg, 1.5rem);
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: var(--radius-lg, 0.5rem);
+    outline: none;
+    color: var(--text-primary, #111827);
+    font-size: 1rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.loginsingup-fields input::placeholder {
+    color: var(--text-muted, #9ca3af);
+    font-weight: 400;
+}
+
+.loginsingup-fields input:focus {
+    border-color: var(--primary, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+}
+
+.loginsingup-fields input:valid {
+    border-color: var(--success, #22c55e);
+}
+
+.loginsingup-fields input:invalid:not(:placeholder-shown) {
+    border-color: var(--danger, #ef4444);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Enhanced Dark Mode for Inputs */
+body.dark-mode .loginsingup-fields input {
+    background: rgba(31, 41, 55, 0.8);
+    border-color: rgba(75, 85, 99, 0.5);
+    color: var(--dark-text-primary, #f9fafb);
+}
+
+body.dark-mode .loginsingup-fields input::placeholder {
+    color: var(--dark-text-muted, #9ca3af);
+}
+
+body.dark-mode .loginsingup-fields input:focus {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: var(--accent, #f59e0b);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+/* Enhanced Login Button */
+.loginsignup-container button {
+    width: 100%;
+    height: 56px;
+    color: white;
+    background: linear-gradient(135deg,
+        var(--primary, #3b82f6) 0%,
+        var(--primary-hover, #2563eb) 50%,
+        var(--secondary, #10b981) 100%);
+    margin-top: var(--space-xl, 2rem);
+    border: none;
+    border-radius: var(--radius-full, 9999px);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3),
+                0 2px 4px 0 rgba(59, 130, 246, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm, 0.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.loginsignup-container button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%);
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.loginsignup-container button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: 1;
+}
+
+.loginsignup-container button:hover::before {
+    left: 100%;
+}
+
+.loginsignup-container button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px 0 rgba(59, 130, 246, 0.4),
+                0 6px 12px 0 rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg,
+        var(--primary-hover, #2563eb) 0%,
+        var(--secondary, #10b981) 50%,
+        var(--accent, #f59e0b) 100%);
+}
+
+.loginsignup-container button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 6px 16px 0 rgba(59, 130, 246, 0.3),
+                0 3px 6px 0 rgba(59, 130, 246, 0.2);
+    transition-duration: 0.1s;
+}
+
+.loginsignup-container button:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Loading State */
+.loginsignup-container button.loading {
+    pointer-events: none;
+    position: relative;
+}
+
+.loginsignup-container button.loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 2;
+}
+
+.loginsignup-container button.loading span {
+    opacity: 0;
+}
+
+/* Success State */
+.loginsignup-container button.success {
+    background: linear-gradient(135deg,
+        var(--success, #22c55e) 0%,
+        var(--success-hover, #16a34a) 100%);
+    box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.3);
+}
+
+.loginsignup-container button.success::before {
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%);
+}
+
+/* Error State */
+.loginsignup-container button.error {
+    background: linear-gradient(135deg,
+        var(--danger, #ef4444) 0%,
+        var(--danger-hover, #dc2626) 100%);
+    box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.3);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Disabled State */
+.loginsignup-container button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.2);
+    background: linear-gradient(135deg,
+        var(--gray-400, #9ca3af) 0%,
+        var(--gray-500, #6b7280) 100%);
+}
+
+.loginsignup-container button:disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.2);
+}
+
+/* Button Content */
+.loginsignup-container button span {
+    position: relative;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.loginsignup-container button .icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.loginsignup-container button:hover .icon {
+    transform: translateX(4px);
+}
+
+/* Enhanced Dark Mode */
+body.dark-mode .loginsignup-container button {
+    background: linear-gradient(135deg,
+        var(--accent, #f59e0b) 0%,
+        var(--primary, #3b82f6) 50%,
+        var(--secondary, #10b981) 100%);
+    box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.3),
+                0 2px 4px 0 rgba(245, 158, 11, 0.2);
+}
+
+body.dark-mode .loginsignup-container button:hover {
+    background: linear-gradient(135deg,
+        var(--primary, #3b82f6) 0%,
+        var(--secondary, #10b981) 50%,
+        var(--accent, #f59e0b) 100%);
+    box-shadow: 0 12px 30px 0 rgba(245, 158, 11, 0.4),
+                0 6px 12px 0 rgba(245, 158, 11, 0.3);
+}
+
+body.dark-mode .loginsignup-container button.success {
+    background: linear-gradient(135deg,
+        var(--success, #22c55e) 0%,
+        var(--accent, #f59e0b) 100%);
+}
+
+body.dark-mode .loginsignup-container button.error {
+    background: linear-gradient(135deg,
+        var(--danger, #ef4444) 0%,
+        var(--danger-hover, #dc2626) 100%);
+}
+
+/* Loading Spinner Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Enhanced Focus States */
+.loginsignup-container button:focus {
+    outline: none;
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3),
+                0 2px 4px 0 rgba(59, 130, 246, 0.2),
+                0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.loginsignup-container button:focus:hover {
+    box-shadow: 0 12px 30px 0 rgba(59, 130, 246, 0.4),
+                0 6px 12px 0 rgba(59, 130, 246, 0.3),
+                0 0 0 3px rgba(59, 130, 246, 0.4);
+}
+
+/* Mobile Enhancements */
+@media (max-width: 480px) {
+    .loginsignup-container button {
+        height: 52px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.25px;
+    }
+
+    .loginsignup-container button .icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    .loginsignup-container button {
+        transition: none;
+    }
+
+    .loginsignup-container button::before,
+    .loginsignup-container button::after {
+        display: none;
+    }
+
+    .loginsignup-container button:hover .icon {
+        transform: none;
+    }
+
+    .loginsignup-container button.error {
+        animation: none;
+    }
+
+    .loginsignup-container button.loading::before {
+        animation: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .loginsignup-container button {
+        border: 2px solid white;
+    }
+
+    .loginsignup-container button:focus {
+        box-shadow: 0 0 0 4px white;
+    }
+}
+
+/* Links and Text */
+.loginsingup-login {
+    margin-top: var(--space-lg, 1.5rem);
+    color: var(--text-secondary, #6b7280);
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+}
+
+.loginsingup-login span {
+    color: var(--primary, #3b82f6);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.loginsingup-login span::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary, #3b82f6);
+    transition: width 0.3s ease;
+}
+
+.loginsingup-login span:hover::after {
+    width: 100%;
+}
+
+.loginsingup-login span:hover {
+    color: var(--primary-hover, #2563eb);
+}
+
+/* Enhanced Dark Mode for Links */
+body.dark-mode .loginsingup-login {
+    color: var(--dark-text-secondary, #e5e7eb);
+}
+
+body.dark-mode .loginsingup-login span {
+    color: var(--accent, #f59e0b);
+}
+
+body.dark-mode .loginsingup-login span::after {
+    background: var(--accent, #f59e0b);
+}
+
+body.dark-mode .loginsingup-login span:hover {
+    color: var(--primary, #3b82f6);
+}
+
+/* Agreement Checkbox */
+.loginsignup-agree {
+    display: flex;
+    align-items: flex-start;
+    margin-top: var(--space-xl, 2rem);
+    gap: var(--space-md, 1rem);
+    color: var(--text-secondary, #6b7280);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: left;
+    position: relative;
+    z-index: 2;
+}
+
+.loginsignup-agree input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--primary, #3b82f6);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.loginsignup-agree label {
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+/* Animations */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .loginsigup {
+        padding: var(--space-lg, 1.5rem) var(--space-sm, 0.5rem);
+    }
+
+    .loginsignup-container {
+        padding: var(--space-xl, 2rem) var(--space-lg, 1.5rem);
+        max-width: 380px;
+    }
+
+    .loginsingup-fields input {
+        height: 52px;
+        font-size: 0.95rem;
+    }
+
+    .loginsignup-container button {
+        height: 52px;
+    }
+}
+
+@media (max-width: 480px) {
+    .loginsignup-container {
+        padding: var(--space-lg, 1.5rem) var(--space-md, 1rem);
+        margin: var(--space-md, 1rem);
+        max-width: none;
+    }
+
+    .loginsingup-fields {
+        gap: var(--space-md, 1rem);
+    }
+
+    .loginsingup-fields input {
+        height: 48px;
+        padding: 0 var(--space-md, 1rem);
+    }
+
+    .loginsignup-container button {
+        height: 48px;
+        margin-top: var(--space-lg, 1.5rem);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .loginsignup-container,
+    .loginsingup-fields input,
+    .loginsignup-container button,
+    .loginsingup-login span {
+        animation: none;
+        transition: none;
+    }
+
+    .loginsignup-container button::before {
+        display: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .loginsignup-container {
+        border: 2px solid;
+    }
+
+    .loginsingup-fields input {
+        border-width: 3px;
+    }
+
+    .loginsignup-container h1 {
+        -webkit-text-fill-color: var(--text-primary, #111827);
+        background: none;
+    }
+
+    body.dark-mode .loginsignup-container h1 {
+        -webkit-text-fill-color: var(--dark-text-primary, #f9fafb);
+        background: none;
+    }
+}
+
+/* Focus States */
+.loginsingup-fields input:focus,
+.loginsignup-container button:focus,
+.loginsingup-login span:focus {
+    outline: 2px solid var(--primary, #3b82f6);
+    outline-offset: 2px;
+}

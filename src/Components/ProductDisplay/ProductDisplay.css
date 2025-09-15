@@ -1,0 +1,125 @@
+.productdisplay {
+  display: flex;
+  gap: 50px;
+  padding: 40px 60px;
+  font-family: Arial, sans-serif;
+}
+
+.productdisplay-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.productdisplay-main-img {
+  width: 400px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.productdisplay-main-img:hover {
+  transform: scale(1.1);
+}
+
+.productdisplay-rigth {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.productdisplay-rigth h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.productdisplay-right-star {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.productdisplay-right-star img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.productdisplay-right-prices {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 18px;
+}
+
+.productdisplay-right-prices-old {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.productdisplay-right-prices-new {
+  color: #e63946;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.productdisplay-right-description {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.productdisplay-right-size h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.productdisplay-right-size-options {
+  display: flex;
+  gap: 12px;
+}
+
+.productdisplay-right-size-options div {
+  border: 1px solid #ccc;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.productdisplay-right-size-options div:hover {
+  background: #f0f0f0;
+  border-color: #333;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 20px;
+  border: none;
+  background: #ff6f61;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #e63946;
+}
+
+.productdisplay-right-category {
+  font-size: 14px;
+  color: #666;
+}
+
+.productdisplay-right-category span {
+  font-weight: bold;
+  color: #333;
+}

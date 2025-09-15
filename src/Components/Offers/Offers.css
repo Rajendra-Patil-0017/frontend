@@ -1,0 +1,1045 @@
+/* ===========================================
+   OFFERS COMPONENT STYLES
+   =========================================== */
+
+/* CSS Custom Properties for better maintainability */
+:root {
+  --primary-color: #ff4141;
+  --primary-hover: #e63939;
+  --text-dark: #171717;
+  --text-medium: #555;
+  --text-light: #777;
+  --bg-white: #ffffff;
+  --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.2);
+  --gradient-bg: linear-gradient(135deg, #fde1ff 0%, #e1ffea22 60%);
+  --border-radius: 16px;
+  --border-radius-small: 10px;
+  --transition-fast: 0.3s ease;
+  --transition-slow: 0.8s ease;
+}
+
+/* Main Offers Container */
+.offers {
+  width: 100%;
+  margin: 3rem 0;
+  padding: clamp(2rem, 5vw, 3rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: var(--gradient-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.offers::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.8s ease;
+  z-index: 1;
+}
+
+.offers::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 65, 65, 0.1) 0%,
+    rgba(227, 62, 57, 0.05) 25%,
+    transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.offers:hover::after {
+  opacity: 1;
+}
+
+.offers.hovered {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(255, 65, 65, 0.15);
+}
+
+.offers.hovered .particle {
+  animation-duration: 4s;
+  opacity: 0.8;
+}
+
+.offers.hovered .gradient-orb {
+  animation-duration: 8s;
+  opacity: 0.9;
+}
+
+.offers.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.offers.visible::before {
+  left: 100%;
+}
+
+/* Enhanced Interactive Effects */
+.offers::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 65, 65, 0.15) 0%,
+      rgba(227, 62, 57, 0.08) 20%,
+      rgba(255, 255, 255, 0.05) 40%,
+      transparent 60%),
+    radial-gradient(circle at calc(var(--mouse-x, 50%) + 20%) calc(var(--mouse-y, 50%) + 20%),
+      rgba(255, 65, 65, 0.08) 0%,
+      transparent 30%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+  animation: colorShift 8s ease-in-out infinite;
+}
+
+.offers.hovered::after {
+  opacity: 0.8;
+}
+
+/* ===========================================
+   INTERACTIVE BACKGROUND ELEMENTS
+   =========================================== */
+
+/* Floating Particles */
+.offers .particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 65, 65, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+  z-index: 0;
+}
+
+.offers .particle:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 8s;
+}
+
+.offers .particle:nth-child(2) {
+  top: 60%;
+  left: 20%;
+  animation-delay: 2s;
+  animation-duration: 10s;
+  width: 6px;
+  height: 6px;
+}
+
+.offers .particle:nth-child(3) {
+  top: 30%;
+  left: 70%;
+  animation-delay: 4s;
+  animation-duration: 7s;
+}
+
+.offers .particle:nth-child(4) {
+  top: 80%;
+  left: 80%;
+  animation-delay: 1s;
+  animation-duration: 9s;
+  width: 3px;
+  height: 3px;
+}
+
+.offers .particle:nth-child(5) {
+  top: 50%;
+  left: 50%;
+  animation-delay: 3s;
+  animation-duration: 11s;
+  width: 5px;
+  height: 5px;
+}
+
+/* Geometric Background Patterns */
+.offers .bg-shape {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.offers .bg-shape.circle {
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(255, 65, 65, 0.1);
+  border-radius: 50%;
+  top: 10%;
+  right: 10%;
+  animation: rotate 20s linear infinite;
+}
+
+.offers .bg-shape.triangle {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 43px solid rgba(255, 65, 65, 0.08);
+  bottom: 15%;
+  left: 15%;
+  animation: bounce 4s ease-in-out infinite;
+}
+
+.offers .bg-shape.square {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 65, 65, 0.05);
+  border-radius: 8px;
+  top: 70%;
+  right: 25%;
+  animation: pulse-bg 3s ease-in-out infinite;
+}
+
+/* Interactive Gradient Orbs */
+.offers .gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+.offers .gradient-orb.orb-1 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 65, 65, 0.1) 0%, transparent 70%);
+  top: -50px;
+  left: -50px;
+  animation: drift 15s ease-in-out infinite;
+}
+
+.offers .gradient-orb.orb-2 {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(227, 62, 57, 0.08) 0%, transparent 70%);
+  bottom: -30px;
+  right: -30px;
+  animation: drift-reverse 12s ease-in-out infinite;
+}
+
+.offers .gradient-orb.orb-3 {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  top: 40%;
+  right: 20%;
+  animation: drift 18s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* Interactive Wave Effects */
+.offers .wave-effect {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.offers .wave-effect.wave-1 {
+  width: 120px;
+  height: 120px;
+  border: 1px solid rgba(255, 65, 65, 0.2);
+  border-radius: 50%;
+  top: 15%;
+  left: 5%;
+  animation: wavePulse 6s ease-in-out infinite;
+}
+
+.offers .wave-effect.wave-2 {
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(227, 62, 57, 0.15);
+  border-radius: 50%;
+  bottom: 20%;
+  right: 15%;
+  animation: wavePulse 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.offers .wave-effect.wave-3 {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(255, 65, 65, 0.1) 0%, transparent 50%);
+  border-radius: 50%;
+  top: 60%;
+  left: 25%;
+  animation: wavePulse 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Magnetic Particles */
+.offers .magnetic-particle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.offers .magnetic-particle.particle-1 {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(45deg, rgba(255, 65, 65, 0.8), rgba(227, 62, 57, 0.6));
+  border-radius: 50%;
+  top: 25%;
+  left: 15%;
+  animation: magneticFloat 4s ease-in-out infinite;
+}
+
+.offers .magnetic-particle.particle-2 {
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.6), rgba(255, 65, 65, 0.4));
+  border-radius: 50%;
+  top: 75%;
+  right: 30%;
+  animation: magneticFloat 5s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.offers .magnetic-particle.particle-3 {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(45deg, rgba(227, 62, 57, 0.7), rgba(255, 65, 65, 0.5));
+  border-radius: 50%;
+  bottom: 30%;
+  left: 40%;
+  animation: magneticFloat 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* Dynamic Background Patterns */
+.offers .dynamic-pattern {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.offers .dynamic-pattern.pattern-1 {
+  width: 150px;
+  height: 150px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 65, 65, 0.05) 0px,
+      rgba(255, 65, 65, 0.05) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+  top: 5%;
+  left: 60%;
+  animation: interactiveGlow 4s ease-in-out infinite;
+}
+
+.offers .dynamic-pattern.pattern-2 {
+  width: 100px;
+  height: 100px;
+  background:
+    radial-gradient(circle, rgba(227, 62, 57, 0.08) 20%, transparent 20%),
+    radial-gradient(circle, transparent 30%, rgba(255, 65, 65, 0.06) 30%);
+  bottom: 10%;
+  left: 10%;
+  animation: interactiveGlow 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.offers .dynamic-pattern.pattern-3 {
+  width: 80px;
+  height: 80px;
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(255, 65, 65, 0.1) 0deg,
+      transparent 90deg,
+      rgba(227, 62, 57, 0.08) 180deg,
+      transparent 270deg
+    );
+  top: 50%;
+  right: 5%;
+  animation: interactiveGlow 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Enhanced Hover Effects */
+.offers.hovered .wave-effect {
+  opacity: 0.6;
+}
+
+.offers.hovered .magnetic-particle {
+  transform: scale(1.2);
+  opacity: 0.9;
+}
+
+.offers.hovered .dynamic-pattern {
+  opacity: 0.7;
+  animation-duration: 2s;
+}
+
+/* Left Section */
+.offers-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeInUp 0.8s ease 0.2s both;
+  z-index: 2;
+}
+
+.offers-left .exclusive,
+.offers-left .offers-for-you {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-dark);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  cursor: pointer;
+  line-height: 1.2;
+  margin: 0;
+  position: relative;
+}
+
+.offers-left .exclusive::after,
+.offers-left .offers-for-you::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--primary-color);
+  transition: width var(--transition-fast);
+}
+
+.offers-left .exclusive:hover::after,
+.offers-left .offers-for-you:hover::after {
+  width: 100%;
+}
+
+.offers-left .exclusive:hover,
+.offers-left .offers-for-you:hover {
+  color: var(--primary-color);
+  transform: scale(1.02);
+}
+
+.offers-left .best-sellers {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-medium);
+  margin: 0.5rem 0;
+  letter-spacing: 0.5px;
+}
+
+/* Countdown Timer */
+.countdown {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.countdown-item {
+  flex: 1;
+  min-width: 70px;
+  text-align: center;
+  background: var(--bg-white);
+  padding: 1rem;
+  border-radius: var(--border-radius-small);
+  box-shadow: var(--shadow-light);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.countdown-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 65, 65, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.countdown-item:hover::before {
+  left: 100%;
+}
+
+.countdown-item:hover {
+  transform: translate3d(0, -5px, 0);
+  box-shadow: var(--shadow-medium);
+}
+
+.countdown-number {
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
+  font-weight: 800;
+  color: var(--primary-color);
+  animation: pulse 2s infinite;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.countdown-label {
+  font-size: 0.75rem;
+  color: var(--text-medium);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Call-to-Action Button */
+.check-now-btn {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  color: var(--bg-white);
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(255, 65, 65, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+
+.check-now-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-fast), height var(--transition-fast);
+}
+
+.check-now-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.check-now-btn:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: 0 8px 25px rgba(255, 65, 65, 0.6);
+}
+
+.check-now-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Right Section */
+.offers-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInRight 0.8s ease 0.4s both;
+  z-index: 2;
+}
+
+.offers-right .offer-image {
+  max-height: 350px;
+  width: 100%;
+  max-width: 400px;
+  object-fit: contain;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+}
+
+.offers-right .offer-image:hover {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: var(--shadow-heavy);
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
+}
+
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(30px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-bg {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    transform: translateX(30px) translateY(-20px);
+  }
+  50% {
+    transform: translateX(-20px) translateY(30px);
+  }
+  75% {
+    transform: translateX(40px) translateY(-10px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+
+@keyframes drift-reverse {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    transform: translateX(-30px) translateY(20px);
+  }
+  50% {
+    transform: translateX(20px) translateY(-30px);
+  }
+  75% {
+    transform: translateX(-40px) translateY(10px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+
+@keyframes colorShift {
+  0%, 100% {
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    filter: hue-rotate(10deg);
+  }
+  50% {
+    filter: hue-rotate(-5deg);
+  }
+  75% {
+    filter: hue-rotate(15deg);
+  }
+}
+
+@keyframes magneticFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.1);
+  }
+}
+
+@keyframes wavePulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes interactiveGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 65, 65, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 65, 65, 0.4), 0 0 60px rgba(255, 65, 65, 0.2);
+  }
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+
+@media (max-width: 1024px) {
+  .offers {
+    flex-direction: column;
+    text-align: center;
+    padding: clamp(1.5rem, 4vw, 2rem);
+    gap: 1.5rem;
+  }
+
+  .offers-left {
+    order: 2;
+    align-items: center;
+  }
+
+  .offers-right {
+    order: 1;
+  }
+
+  .offers-left .exclusive,
+  .offers-left .offers-for-you {
+    font-size: clamp(1.8rem, 4vw, 2rem);
+  }
+
+  .offers-right .offer-image {
+    max-height: 280px;
+    max-width: 300px;
+  }
+
+  .countdown {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .countdown-item {
+    min-width: 60px;
+    padding: 0.8rem;
+  }
+
+  .check-now-btn {
+    align-self: center;
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .offers {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .offers-left .exclusive,
+  .offers-left .offers-for-you {
+    font-size: 1.8rem;
+  }
+
+  .offers-left .best-sellers {
+    font-size: 0.9rem;
+  }
+
+  .countdown {
+    gap: 0.3rem;
+  }
+
+  .countdown-item {
+    min-width: 50px;
+    padding: 0.6rem;
+  }
+
+  .countdown-number {
+    font-size: 1.4rem;
+  }
+
+  .countdown-label {
+    font-size: 0.65rem;
+  }
+
+  .offers-right .offer-image {
+    max-height: 220px;
+    max-width: 250px;
+  }
+
+  .check-now-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .offers {
+    margin: 1.5rem 0;
+    padding: 1rem;
+  }
+
+  .offers-left .exclusive,
+  .offers-left .offers-for-you {
+    font-size: 1.5rem;
+  }
+
+  .countdown {
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .countdown-item {
+    min-width: 60px;
+    padding: 0.6rem;
+  }
+
+  .offers-right .offer-image {
+    max-height: 180px;
+    max-width: 200px;
+  }
+}
+
+/* ===========================================
+   ACCESSIBILITY & PERFORMANCE
+   =========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+.offers-left .exclusive:focus,
+.offers-left .offers-for-you:focus,
+.check-now-btn:focus,
+.offers-right .offer-image:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .offers {
+    border: 2px solid var(--text-dark);
+  }
+
+  .countdown-item {
+    border: 1px solid var(--text-medium);
+  }
+}
+
+/* ===========================================
+   COUNTDOWN TIMER - FIXED ALIGNMENT
+   =========================================== */
+
+/* Ensure countdown stays in one line */
+.countdown {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: nowrap; /* Prevent wrapping to next line */
+  justify-content: center;
+  align-items: stretch; /* Ensure all items have same height */
+}
+
+.countdown-item {
+  flex: 1;
+  min-width: 70px;
+  max-width: 100px; /* Add max-width to prevent items from getting too large */
+  text-align: center;
+  background: var(--bg-white, #ffffff);
+  padding: 1rem;
+  border-radius: var(--border-radius-small, 10px);
+  box-shadow: var(--shadow-light, 0 4px 15px rgba(0, 0, 0, 0.1));
+  transition: transform var(--transition-fast, 0.3s ease), 
+              box-shadow var(--transition-fast, 0.3s ease);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown-number {
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
+  font-weight: 800;
+  color: var(--primary-color, #ff4141);
+  animation: pulse 2s infinite;
+  display: block;
+  margin-bottom: 0.25rem;
+  line-height: 1; /* Ensure consistent line height */
+}
+
+.countdown-label {
+  font-size: 0.75rem;
+  color: var(--text-medium, #555);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1; /* Ensure consistent line height */
+}
+
+/* ===========================================
+   RESPONSIVE ADJUSTMENTS
+   =========================================== */
+
+@media (max-width: 1024px) {
+  .countdown {
+    gap: 0.75rem; /* Slightly reduce gap on tablets */
+    flex-wrap: nowrap; /* Still prevent wrapping */
+  }
+
+  .countdown-item {
+    min-width: 60px;
+    max-width: 90px;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .countdown {
+    gap: 0.5rem; /* Further reduce gap on smaller tablets */
+    flex-wrap: nowrap; /* Keep items in one line */
+  }
+
+  .countdown-item {
+    min-width: 50px;
+    max-width: 80px;
+    padding: 0.6rem 0.4rem; /* Reduce horizontal padding */
+  }
+
+  .countdown-number {
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+  }
+
+  .countdown-label {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown {
+    gap: 0.25rem; /* Minimal gap on mobile */
+    flex-wrap: nowrap; /* Force single line even on mobile */
+    padding: 0 0.5rem; /* Add horizontal padding to container */
+  }
+
+  .countdown-item {
+    flex: 1;
+    min-width: 0; /* Allow items to shrink below min-width if needed */
+    max-width: 70px;
+    padding: 0.5rem 0.25rem; /* Minimal padding */
+  }
+
+  .countdown-number {
+    font-size: clamp(1rem, 3vw, 1.2rem); /* Smaller font on mobile */
+  }
+
+  .countdown-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.5px; /* Reduce letter spacing */
+  }
+}
+
+/* Ultra small screens (below 360px) */
+@media (max-width: 360px) {
+  .countdown {
+    gap: 0.15rem;
+  }
+
+  .countdown-item {
+    padding: 0.4rem 0.2rem;
+  }
+
+  .countdown-number {
+    font-size: 1rem;
+  }
+
+  .countdown-label {
+    font-size: 0.55rem;
+    letter-spacing: 0;
+  }
+}
